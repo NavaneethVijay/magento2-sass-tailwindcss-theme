@@ -1,0 +1,21 @@
+.block-banners,
+.block-banners-inline {
+    @extend .abs-margin-for-blocks-and-widgets;
+
+    .banner-items {
+        @extend .abs-reset-list;
+    }
+
+    .banner-item {
+        display: block;
+    }
+
+    .banner-item-content {
+        @include lib-css(margin-bottom, $indent__base);
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}

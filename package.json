@@ -1,0 +1,35 @@
+{
+  "author": "NavaneethVijay",
+  "description": "Magento 2 - Blank theme - SASS version with TailwindCss",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.24.4",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.2.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-util": "^3.0.8",
+    "jquery": "^3.5.0",
+    "autoprefixer": "^8.3.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "font-awesome": "^4.7.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-js-minify": "^0.0.3",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-webserver": "^0.9.1",
+    "lodash": "^4.17.5",
+    "precss": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "postcss-import": "^12.0.1",
+    "tailwindcss": "^1.8.12"
+  }
+}

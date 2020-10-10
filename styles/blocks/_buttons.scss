@@ -1,0 +1,15 @@
+a.action.primary,
+button {
+    @include lib-css(border-radius, $button__border-radius);
+}
+button {
+    &:active {
+        @include lib-css(box-shadow, $button__shadow);
+    }
+}
+a.action.primary {
+    @include lib-link-as-button();
+}
+.action.primary {
+    @include lib-button-primary();
+}

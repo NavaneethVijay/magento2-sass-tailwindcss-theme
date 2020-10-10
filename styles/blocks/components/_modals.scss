@@ -1,0 +1,239 @@
+//
+//  Lib -> Components -> Modals
+//  _____________________________________________
+
+//
+//  Variables
+//  ---------------------------------------------
+
+$modal__background-color                         : $color-white !default;
+$modal__box-shadow                               : 0 0 12px 2px rgba(0, 0, 0, 0.35) !default;
+
+$modal-popup__indent-vertical                    : 5rem !default;
+$modal-popup__padding                            : 3rem !default;
+$modal-popup__width                              : 75% !default;
+$modal-popup__z-index                            : $modal__z-index !default;
+
+$modal-slide__first__indent-left                 : 14.8rem !default;
+$modal-slide__indent-left                        : 4.5rem !default;
+$modal-slide__padding                            : 2.6rem !default;
+$modal-slide__z-index                            : $modal__z-index !default;
+
+$modal-slide-header__padding-vertical            : 2.1rem !default;
+
+$modal-popup-confirm__width                      : 50rem !default;
+
+$modal-popup-image-box__border-color             : $color-gray80 !default;
+$modal-popup-image-box__max-width                : 78rem !default;
+
+$modal-popup-image-box-preview-image__max-height : 54rem !default;
+$modal-popup-image-box-preview__max-width        : calc(#{$modal-popup-image-box-preview-image__max-height} + #{(2 * $indent__base)}) !default;
+
+//
+//  Utilities
+//  ---------------------------------------------
+
+@mixin lib-modal() {
+    bottom: 0;
+    left: 0;
+    min-width: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.3s ease;
+
+    &._show {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+
+        .modal-inner-wrap {
+            transform: translate(0, 0);
+        }
+    }
+
+    .modal-inner-wrap {
+        @include lib-css(background-color, $modal__background-color);
+        @include lib-css(box-shadow, $modal__box-shadow);
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+@mixin lib-modal-slide() {
+    @include lib-css(left, $modal-slide__first__indent-left);
+    @include lib-css(z-index, $modal-slide__z-index);
+
+    &._show {
+        .modal-inner-wrap {
+            transform: translateX(0);
+        }
+    }
+
+    .modal-inner-wrap {
+        height: 100%;
+        overflow-y: auto;
+        position: static;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        width: auto;
+    }
+}
+
+@mixin lib-modal-popup() {
+    @include lib-css(z-index, $modal-popup__z-index);
+    left: 0;
+    overflow-y: auto;
+
+    &._show {
+        .modal-inner-wrap {
+            transform: translateY(0);
+        }
+    }
+
+    .modal-inner-wrap {
+        @include lib-css(margin, $modal-popup__indent-vertical auto);
+        @include lib-css(width, $modal-popup__width);
+        @include lib-vendor-prefix-display(flex);
+        @include lib-vendor-prefix-flex-direction(column);
+        box-sizing: border-box;
+        height: auto;
+        left: 0;
+        position: absolute;
+        right: 0;
+        transform: translateY(-200%);
+        transition: transform 0.2s ease;
+
+    }
+}
+
+body {
+    &._has-modal {
+        height: 100%;
+        overflow: hidden;
+        width: 100%;
+    }
+}
+
+//  Modals overlay
+.modals-overlay {
+    @include lib-css(z-index, $overlay__z-index);
+}
+
+.modal-slide,
+.modal-popup {
+    @include lib-modal();
+}
+
+.modal-slide {
+    @include lib-modal-slide();
+    &._inner-scroll {
+        .modal-inner-wrap {
+            overflow-y: visible;
+            @include lib-vendor-prefix-display(flex);
+            @include lib-vendor-prefix-flex-direction(column);
+        }
+
+        .modal-header,
+        .modal-footer {
+            @include lib-vendor-prefix-flex-grow(0);
+            @include lib-vendor-prefix-flex-shrink(0);
+        }
+
+        .modal-content {
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            margin-top: auto;
+        }
+    }
+
+    .modal-header,
+    .modal-content,
+    .modal-footer {
+        @include lib-css(padding, 0 $modal-slide__padding $modal-slide__padding);
+    }
+
+    .modal-header {
+        @include lib-css(padding-bottom, $modal-slide-header__padding-vertical);
+        @include lib-css(padding-top, $modal-slide-header__padding-vertical);
+    }
+}
+
+.modal-popup {
+    @include lib-modal-popup();
+
+    //  If applied, switching outer popup scroll to inner
+    &._inner-scroll {
+        overflow-y: visible;
+
+        .ie11 &,
+        .ie10 &,
+        .ie9 & {
+            overflow-y: auto;
+        }
+
+        .modal-inner-wrap {
+            max-height: 90%;
+
+            .ie11 &,
+            .ie10 &,
+            .ie9 & {
+                max-height: none;
+            }
+        }
+
+        .modal-content {
+            overflow-y: auto;
+        }
+    }
+
+    .modal-header,
+    .modal-content,
+    .modal-footer {
+        @include lib-css(padding-left, $modal-popup__padding);
+        @include lib-css(padding-right, $modal-popup__padding);
+    }
+
+    .modal-header,
+    .modal-footer {
+        @include lib-vendor-prefix-flex-grow(0);
+        @include lib-vendor-prefix-flex-shrink(0);
+    }
+
+    .modal-header {
+        @include lib-css(padding-bottom, $modal-popup__padding / 2.5);
+        @include lib-css(padding-top, $modal-popup__padding);
+    }
+
+    .modal-footer {
+        margin-top: auto;
+        @include lib-css(padding-bottom, $modal-popup__padding);
+        @include lib-css(padding-top, $modal-popup__padding);
+    }
+
+    .modal-footer-actions {
+        text-align: right;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+//  Mobile transform to modal-slide
+@include max-screen($screen__m) {
+    .modal-popup {
+        &.modal-slide {
+            @include lib-modal-slide();
+
+            .modal-inner-wrap {
+                margin: 0;
+                max-height: none;
+            }
+        }
+    }
+}

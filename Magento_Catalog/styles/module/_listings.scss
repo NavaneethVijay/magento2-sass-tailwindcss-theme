@@ -1,0 +1,15 @@
+.page-products{
+     .sidebar-main{
+         position: sticky;
+         top: 10px;
+     }
+}
+.product-items {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-gap: 2.5rem;
+
+    .price-label {
+        display: none;
+    }
+}
