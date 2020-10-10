@@ -1,6 +1,8 @@
+
 # Magento 2 - Blank theme - SASS version with TailwindCss [WIP]
 
 SASS based version of Magento 2 Blank theme, with Tailwind css included.
+![Demo](https://i.ibb.co/hVZN5hz/Screenshot-from-2020-10-10-21-29-53.png)
 
 ## Installation
 
@@ -8,5 +10,5 @@ SASS based version of Magento 2 Blank theme, with Tailwind css included.
 2. Change registration.php
 3. Set you application to `developer` mode
 4. Run `bin/magento setup:upgrade` to register theme
-5. cd to app/design/frontend/vendor/theme run yarn or npm install to install node dependencies
-6. run gulp sass to compile the scss files to css
+5. cd to app/design/frontend/vendor/theme run `yarn or npm install` to install node dependencies
+6. run `gulp sass` to compile the scss files to css
